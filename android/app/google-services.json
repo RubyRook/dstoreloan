@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "804193721723",
+    "project_id": "d-store-loan",
+    "storage_bucket": "d-store-loan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804193721723:android:a0fe6fa73c80ac0db671de",
+        "android_client_info": {
+          "package_name": "kh.com.dstore.loan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804193721723-iu0m3iho3e86mk33ijbm44196igcq51s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kh.com.dstore.loan",
+            "certificate_hash": "82a8b3d3339816737cb47330251075c50bc68b44"
+          }
+        },
+        {
+          "client_id": "804193721723-9lfrh1ipn2a38p80s54hfl0qgdsoslhu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjPfuRKhJ8cN80T2rIGLfTVZXB5vwFcSs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804193721723-9lfrh1ipn2a38p80s54hfl0qgdsoslhu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

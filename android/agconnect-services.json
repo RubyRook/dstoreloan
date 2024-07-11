@@ -1,0 +1,12 @@
+{
+	"client":{
+		"cp_id":"890855000000000221",
+		"product_id":"736430079244577178",
+		"client_id":"412239799794009152",
+		"client_secret":"D403F3640C632A653678177FAD2FE45F05CE3D41CFB8A3254A875E4B2C3BF6EB",
+		"app_id":"102608777",
+		"package_name":"kh.com.dstore.loan",
+		"api_key":"CgB6e3x9YtR249A40lHeQiH6Ou2gQp/G+z9RI1IOd60yzVTQWWE0ITslEsSjyw57MmtHoj/gtWZyFUB//q91mFp6"
+	},
+	"configuration_version":"1.0"
+}
