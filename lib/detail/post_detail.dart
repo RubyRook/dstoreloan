@@ -36,7 +36,7 @@ class _PostDetailState extends State<PostDetail> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    widget.analytics.setCurrentScreen(screenName: "${widget.type}/${widget.detail?["id"]}");
+    widget.analytics.logScreenView(screenName: "${widget.type}/${widget.detail?["id"]}");
   }
   @override
   Widget build(BuildContext context) {

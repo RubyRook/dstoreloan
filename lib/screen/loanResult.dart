@@ -391,7 +391,7 @@ class _LoanResultState extends State<LoanResult> with AutomaticKeepAliveClientMi
     super.initState();
     _calculate();
 
-    MyApp.analytics.setCurrentScreen(screenName: "LoanResult");
+    MyApp.analytics.logScreenView(screenName: "LoanResult");
   }
 
   @override

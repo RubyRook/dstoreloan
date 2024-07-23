@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
         FirebaseAnalyticsObserver(analytics: MyApp.analytics),
       ],
       theme: ThemeData(
+        useMaterial3: false,
         fontFamily: 'Battambang',
         primarySwatch: Colors.blue,
         appBarTheme: AppBarTheme(
@@ -51,6 +52,7 @@ class NavScreen extends StatefulWidget {
   @override
   _NavScreenState createState() => _NavScreenState();
 }
+
 class _NavScreenState extends State<NavScreen>{
 
   int _currentIndex = 0;
@@ -66,15 +68,16 @@ class _NavScreenState extends State<NavScreen>{
   void initState() {
     // TODO: implement initState
     super.initState();
-    widget.analytics.setCurrentScreen(screenName: "Navigate Screen");
+    widget.analytics.logScreenView(screenName: "Navigate Screen");
   }
   @override
   Widget build(BuildContext context) {
 
     return DefaultTabController(
       length: 3,
-      child: WillPopScope(
-        onWillPop: _onBackPress,
+      child: PopScope(
+        canPop: false,
+        onPopInvoked: _onBackPress,
         child: Scaffold(
           body: IndexedStack(
             index: _selectedIndex,
@@ -134,49 +137,51 @@ class _NavScreenState extends State<NavScreen>{
     if(_selectedIndex == 1) tabName = "RequirementScreen";
     if(_selectedIndex == 2) tabName = "PromotionScreen";
 
-    widget.analytics.setCurrentScreen(screenName: tabName);
+    widget.analytics.logScreenView(screenName: tabName);
   }
 
-  Future<bool> _onBackPress() async {
-    return (await showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text("Are you sure?"),
-        content: Text("Do you want to exit an App"),
-        contentPadding: EdgeInsets.symmetric(horizontal: 25),
-        actionsPadding: EdgeInsets.only(left: 10, right: 10, bottom: 15, top: 15),
-        actions: [
-          Container(
-            height: 36,
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    child: TextButton(
-                      onPressed: () => Navigator.of(context).pop(false),
-                      style: TextButton.styleFrom(backgroundColor: Colors.grey.shade200,),
-                      child: Text("Cancel", style: TextStyle(color: Colors.black54)),
+  Future<void> _onBackPress(bool didPop) async {
+    if(didPop == false) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Are you sure?"),
+          content: Text("Do you want to exit an App"),
+          contentPadding: EdgeInsets.symmetric(horizontal: 25),
+          actionsPadding: EdgeInsets.only(left: 10, right: 10, bottom: 15, top: 15),
+          actions: [
+            Container(
+              height: 36,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: TextButton(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        style: TextButton.styleFrom(backgroundColor: Colors.grey.shade200,),
+                        child: Text("Cancel", style: TextStyle(color: Colors.black54)),
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    child: TextButton(
-                      onPressed: () => Navigator.of(context).pop(true),
-                      style: TextButton.styleFrom(backgroundColor: config.primaryColor,),
-                      child: Text("Exit", style: TextStyle(color: Colors.white)),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: TextButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        style: TextButton.styleFrom(backgroundColor: config.primaryColor,),
+                        child: Text("Exit", style: TextStyle(color: Colors.white)),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    )) ?? false;
+                ],
+              ),
+            )
+          ],
+        ),
+      );
+    }
   }
 }
